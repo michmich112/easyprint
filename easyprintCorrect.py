@@ -4,7 +4,7 @@ DICT = 1
 TUPL = 2
 
 spaces = 0
-CustomSpacing = 1
+CustomSpacing = 2
 
 def returnType(inputValue):
 	global LIST,DICT,TUPL
@@ -18,18 +18,14 @@ def returnType(inputValue):
 	else:
 		return None
 
-def printing(inputValue):
-	tmp = returnType(inputValue)
-	if tmp == None:
-		print(inputValue)
-	elif tmp == LIST:
-
-
 def eprint(inputValue):
 	global LIST,DICT,TUPL,spaces,CustomSpacing
 	tmp = returnType(inputValue)
 	if tmp == None:
-		print(' '*spaces + inputValue)
+		try:
+			print(' '*spaces + str(inputValue))
+		except UnicodeEncodeError:
+			print(inputValue)
 	elif tmp == LIST:
 		print(' '*spaces + '[')
 		spaces += 1*CustomSpacing
@@ -43,9 +39,12 @@ def eprint(inputValue):
 		k = inputValue.keys()
 		for key in k:
 			if returnType(inputValue.get(key)) == None:
-				print(key + ' : ' + inputValue.get(key))
+				try:
+					print(' '*spaces + key + ' : ' + str(inputValue.get(key)))
+				except UnicodeEncodeError:
+					print(' '*spaces + key + ' : ' ,inputValue.get(key))
 			else:
-				print(key + ' :')
+				print(' '*spaces + key + ' :')
 				eprint(inputValue.get(key))
 		spaces -= 1*CustomSpacing
 		print(' '*spaces + '}')
