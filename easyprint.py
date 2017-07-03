@@ -1,3 +1,12 @@
+'''
+# easyprint: The printing software for developers to view data more clearly. Display any python data
+#  ->lists, dicts, tupples, strings
+# in a neat and organized manner.
+# to do so call the eprint(Data) function in your program
+# Author: michmich112
+# e-mail: mchl.aauee.98@gmail.com
+# http://github.com/michmich112/easyprint 
+'''
 
 LIST = 0
 DICT = 1
